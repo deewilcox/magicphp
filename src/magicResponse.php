@@ -2,7 +2,7 @@
 
 namespace Magic;
 
-class MagicResponse{
+class MagicResponse extends Magic {
 
     private $objResponse;
     private $sCharacterEncoding;
@@ -11,8 +11,7 @@ class MagicResponse{
 
 
     public function __construct() {
-        //$this->objResponse = NULL;
-//        $this->aDebugMessages = array();
+        parent::__construct();
     }
 
     public static function &getInstance() {

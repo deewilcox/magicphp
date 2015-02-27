@@ -2,13 +2,12 @@
 
 namespace Magic;
 
-class MagicFunctions{
+class MagicFunctions extends Magic {
 
     private $objResponse;
 
     public function __construct() {
-        //$this->objResponse = NULL;
-//        $this->aDebugMessages = array();
+        parent::__construct();
     }
 
     public static function &getInstance() {

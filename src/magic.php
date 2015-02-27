@@ -30,15 +30,19 @@ namespace Magic;
 include_once('config/magicSettings.json');
 include_once('magicResponse.php');
 include_once('magicFunctions.php');
+include_once('magicRequestManager.php');
 
 class Magic {
 
     private $magicSettings;
     private $magicUserSessionKey;
-    private $magicExitAllowed;
     private $magicErrorHandler;
     private $magicLogFile;
     public $magicCanProcessRequest;
+
+    public $magicRequestObject;
+    public $magicResponseObject;
+    public $magicFunctionsObject;
 
     public function __construct(){
         /* Default values for settings */
@@ -46,8 +50,9 @@ class Magic {
         $this->magicErrorHandler = false;
         $this->magicLogFile = false;
 
-        $this->magicResponse = new MagicResponse();
-        $this->magicFunctions = new MagicFunctions();;
+        $this->magicRequestObject = new MagicRequestManager();
+        $this->magicResponseObject = new MagicResponse();
+        $this->magicFunctionsObject = new MagicFunctions();
 
         /* Get settings from json file */
         $jsonSettings = file_get_contents('config/magicSettings.json');
@@ -70,7 +75,7 @@ class Magic {
     public function verifySession() {
         $sessionId = session_id();
         if($sessionId === '') {
-            $this->magicResponse->debug('Must enable sessions to use magicPHP.');
+            $this->magicResponseObject->debug('Must enable sessions to use magicPHP.');
             return false;
         }
         else{
@@ -139,5 +144,13 @@ class Magic {
         else{
             $this->magicCanProcessRequest = false;
         }
+    }
+
+    public function getJavascript(){
+        $javascript = '';
+
+        // Iterate over the request object and echo out each request
+
+        return $javascript;
     }
 }
