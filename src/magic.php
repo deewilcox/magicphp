@@ -149,8 +149,13 @@ class Magic {
     public function getJavascript(){
         $javascript = '';
 
-        // Iterate over the request object and echo out each request
+        // Iterate over the requests object and echo out each request
+        $requests = $this->magicRequestObject->returnRequests();
 
-        return $javascript;
+        foreach($requests as $request){
+            $javascript .= $request;
+        }
+
+        return '<script>' . $javascript . '</script>';
     }
 }
