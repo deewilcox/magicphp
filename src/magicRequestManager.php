@@ -72,5 +72,3 @@ class MagicRequestManager extends Magic {
         // Remove request from Array after its response has been received
     }
 }
-
-?>

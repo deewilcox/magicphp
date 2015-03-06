@@ -17,11 +17,11 @@ namespace Magic;
     json_decode is well supported in PHP, and we don't want to require applications to use or install other parsing tools.
  *
  * Objects:
-    $magicSettings - contains application specific settings
-    $magicErrorHandler
-    $magicProcesingEventHandlers
-    $magicFunctions - used to call functions and get form values
-    $magicResponse -- used to populate views
+    @magicSettings - contains application specific settings
+    @magicErrorHandler
+    @magicProcesingEventHandlers
+    @magicFunctions - used to call functions and get form values
+    @magicResponse -- used to populate views
  *
  * Methods:
 
@@ -75,7 +75,7 @@ class Magic {
     public function verifySession() {
         $sessionId = session_id();
         if($sessionId === '') {
-            $this->magicResponseObject->debug('Must enable sessions to use magicPHP.');
+            $this->magicResponseObject->alert('Must enable sessions to use magicPHP.');
             return false;
         }
         else{

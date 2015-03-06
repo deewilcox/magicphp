@@ -4,8 +4,6 @@ namespace Magic;
 
 class MagicFunctions extends Magic {
 
-    private $objResponse;
-
     public function __construct() {
         parent::__construct();
     }
@@ -13,15 +11,10 @@ class MagicFunctions extends Magic {
     public static function &getInstance() {
         static $obj;
         if (!$obj) {
-            $obj = new MagicFunction();
+            $obj = new MagicFunctions();
         }
         return $obj;
     }
 
-
-    public function call() {
-
-    }
+    
 }
-
-?>
