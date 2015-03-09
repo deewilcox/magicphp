@@ -1,0 +1,43 @@
+{
+  "name": "deewilcox/magicphp",
+  "description": "A PHP Class library for developing Ajax applications with jQuery and PHP",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "toolkit",
+    "internals",
+    "PHP",
+    "Ajax",
+    "jQuery"
+  ],
+  "authors": [
+    {
+      "name": "Dee Wilcox",
+      "email": "dee.wilcox@mac.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "phpclasses/assets": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Magic\\": ["src", "tests"]
+    }
+  },
+  "scripts": {
+    // include call backs to set up config here
+    "test": "phpunit",
+    "config": ""
+  },
+  "extra": {
+    "settings": {
+      "project-base": "",
+      "logged-in": "false",
+      "permissions-check": "false",
+      "assets": {
+        "magic.js": "/web/resources/magic.js"
+      }
+    }
+  }
+}
