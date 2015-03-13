@@ -1,19 +1,17 @@
 <?php
 
+/*
+ * The purpose of this file is to format and return the appropriate methods from magic.js
+ */
+
 namespace Magic;
 
 class MagicResponse extends Magic {
 
+    // @TODO: We don't need this constructor unless we need to define the response object as a container/array
     public function __construct() {
         parent::__construct();
-    }
 
-    public static function &getInstance() {
-        static $obj;
-        if (!$obj) {
-            $obj = new MagicResponse();
-        }
-        return $obj;
     }
 
     public function assign($elementId,$property,$data) {

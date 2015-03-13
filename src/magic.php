@@ -1,7 +1,5 @@
 <?php
 
-namespace Magic;
-
 /**
  * Motto:
     "Any sufficiently advanced technology is indistinguishable from magic." - Arthur C. Clarke
@@ -27,6 +25,8 @@ namespace Magic;
 
 **/
 
+namespace Magic;
+
 include_once('config/magicSettings.json');
 include_once('magicResponse.php');
 include_once('magicFunctions.php');
@@ -45,29 +45,22 @@ class Magic {
     public $magicFunctionsObject;
 
     public function __construct(){
-        /* Default values for settings */
+
+        // Define defaults
         $this->magicCanProcessRequest = false;
-        $this->magicErrorHandler = false;
-        $this->magicLogFile = false;
 
-        $this->magicRequestObject = new MagicRequestManager();
-        $this->magicResponseObject = new MagicResponse();
-        $this->magicFunctionsObject = new MagicFunctions();
-
-        /* Get settings from json file */
+        // Get settings from json file
         $jsonSettings = file_get_contents('config/magicSettings.json');
         $settingsArray = json_decode($jsonSettings);
         $this->magicSettings = $settingsArray['settings'];
 
-        /* If the request URL has not been set in the config file, get the server URI */
+        // If the request URL has not been set in the config file, get the server URI
         if($this->magicSettings->requestURI == '') {
             $this->magicSettings->requestURI = $_SERVER['SERVER_NAME'];
         }
 
         $this->magicErrorHandler = $this->magicSettings->errorHandler;
-        $this->magicCleanBuffer = $this->magicSettings->errorHandler;
         $this->magicLogFile = $this->magicSettings->errorHandler;
-        $this->magicExitAllowed = $this->magicSettings->exitAllowed;
 
     }
 
@@ -75,7 +68,8 @@ class Magic {
     public function verifySession() {
         $sessionId = session_id();
         if($sessionId === '') {
-            $this->magicResponseObject->alert('Must enable sessions to use magicPHP.');
+            $magicResponseObject = new MagicResponse();
+            $magicResponseObject->alert('Must enable sessions to use magicPHP.');
             return false;
         }
         else{
@@ -150,7 +144,8 @@ class Magic {
         $javascript = '';
 
         // Iterate over the requests object and echo out each request
-        $requests = $this->magicRequestObject->returnRequests();
+        $magicRequestObject = new MagicRequestManager();
+        $requests = $magicRequestObject->returnRequests();
 
         foreach($requests as $request){
             $javascript .= $request;
