@@ -9,21 +9,23 @@
 (function ( $ ) {
 
     $.fn.magic = function() {
-        // Initialize the plugin
+        // Check plugin availability
+        if(this) {
+            console.log(this);
+        }
+        else {
+            console.log('Status: magic.js is initialized and running.');
+        }
     };
 
     // Define alert function
-    $.fn.magicAlert = function( text ) {
-        return alert(text);
-    };
-
-    $.fn.magicAlertDialog = function ( title,text, button) {
-        // Update to use jQuery UI and tell this function to accept title, text, and button parameters.
+    $.fn.magicAlert = function() {
+        return alert(this);
     };
 
     // Define assign function
-    $.fn.magicAssign = function( elementId, data ) {
-        var element = $('#' + elementId);
+    $.fn.magicAssign = function( data ) {
+        var elementId = $('#' + this);
         if( typeof elementId == undefined) {
             debug('assign','Element is undefined');
         }
@@ -37,9 +39,8 @@
 
     // Define callFunction function
     // @TODO: This method still needs work
-    $.fn.magicCallFunction = function ( functionName, formValues ){
-        console.log(functionName);
-        console.log(formValues);
+    $.fn.magicCallFunction = function ( formValues ){
+        var functionName = this;
         $.ajax({
             url: "/",
             data: {
@@ -61,8 +62,8 @@
     };
 
     // Define getFormValues function
-    $.fn.magicGetFormValues = function( formId ) {
-        return $(formId).serializeArray();
+    $.fn.magicGetFormValues = function() {
+        return $(this).serializeArray();
     };
 
     // Private debugging function
