@@ -11,19 +11,15 @@ class MagicResponse extends Magic {
     // @TODO: We don't need this constructor unless we need to define the response object as a container/array
     public function __construct() {
         parent::__construct();
-
     }
 
-    public function assign($elementId,$property,$data) {
+    public function assign($elementId,$data) {
         if($elementId !== '') {
-            $formattedElementId = '"#' . $elementId . '"';
-            $formattedProperty = '"' . $property . '"';
             $formattedData = '"' . $data . '"';
 
             $javascript = <<<JS
-            magic.assign($formattedElementId, $formattedProperty, $formattedData);
+            magic.magicAssign($elementId, $formattedData);
 JS;
-
             return $javascript;
         }
         else {
@@ -37,7 +33,6 @@ JS;
             $javascript = <<<JS
             $script
 JS;
-
             return $javascript;
         }
         else {
@@ -49,9 +44,8 @@ JS;
         if($string) {
             $formattedString = '"' . $string . '"';
             $javascript = <<<JS
-            magic.alert($formattedString);
+            magic.magicAlert($formattedString);
 JS;
-
             return $javascript;
         }
         else {
@@ -64,7 +58,7 @@ JS;
         if($formId) {
             $formattedFormId = '"#' . $formId . '"';
             $javascript = <<<JS
-            magic.getFormValues($formattedFormId);
+            magic.magicGetFormValues($formattedFormId);
 JS;
             return $javascript;
         }
